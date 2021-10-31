@@ -1,3 +1,5 @@
 [include/beginner_tutorials/listener.hpp:19]: (style) class 'Listener' does not have a copy constructor which is recommended since the class contains a pointer to allocated memory.
 [src/talker.cpp:13]: (warning) Member variable 'Talker::publisher_rate' is not initialized in the constructor.
-[include/beginner_tutorials/talker.hpp:19]: (style) class 'Talker' does not have a copy constructor which is recommended since the class contains a pointer to allocated memory.
+[src/talker.cpp:19]: (warning) Member variable 'Talker::publisher_rate' is not initialized in the constructor.
+[src/talker.cpp:20]: (style) Value of pointer 'nh_p', which points to allocated memory, is copied in copy constructor instead of allocating new memory.
+[include/beginner_tutorials/talker.hpp:19]: (warning) The class 'Talker' has 'copy constructor' but lack of 'operator='.
