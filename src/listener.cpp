@@ -20,11 +20,13 @@ Listener::~Listener()
 {}
 
 void Listener::initParams() {
-    this->nh_p->param<std::string>("subscriber_topic_name", this->subscriber_topic_name, "/chatter");
+    this->nh_p->param<std::string>("subscriber_topic_name",
+     this->subscriber_topic_name, "/chatter");
 }
 
 void Listener::initSubscribers() {
-    this->chatter_sub = this->nh_p->subscribe(this->subscriber_topic_name, 1, &Listener::chatter_callback, this);
+    this->chatter_sub = this->nh_p->subscribe(this->subscriber_topic_name,
+     1, &Listener::chatter_callback, this);
 }
 
 void Listener::chatter_callback(const std_msgs::String::ConstPtr& msg) {
