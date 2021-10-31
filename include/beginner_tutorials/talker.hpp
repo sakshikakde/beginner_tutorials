@@ -37,6 +37,7 @@ class Talker {
  private:
     std::string publisher_topic_name;  // ROS publisher topic name
     ros::Publisher chatter_pub;  // ROS publisher object
+    int publisher_rate;  // rate of publishing
     /**
      * @brief Function to init params
      * 

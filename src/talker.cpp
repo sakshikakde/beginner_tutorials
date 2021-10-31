@@ -21,10 +21,11 @@ Talker::~Talker()
 
 void Talker::initParams() {
     this->nh_p->param<std::string>("publisher_topic_name", this->publisher_topic_name, "/chatter");
+    this->nh_p->param<int>("publisher_rate", this->publisher_rate, 10);
 }
 
 void Talker::initPublishers() {
-    this->chatter_pub = this->nh_p->advertise<std_msgs::String>(this->publisher_topic_name, 10, this);
+    this->chatter_pub = this->nh_p->advertise<std_msgs::String>(this->publisher_topic_name, this->publisher_rate, this);
 }
 
 void Talker::runNode() {
