@@ -18,21 +18,47 @@ listener_node.cpp and talker_node.cpp are the files where the objectes for the c
 ## Building the package
 1) Create a catkin workspace catkin_ws
 2) Clone the package inside catkin_ws/src using 
-'git clone https://github.com/sakshikakde/beginner_tutorials.git'
-4) cd catkin_ws
+
+``` 
+git clone https://github.com/sakshikakde/beginner_tutorials.git 
+```
+4) Change the directory
+```
+cd catkin_ws
+
+```
 5) run 
-'catkin build'
+
+``` 
+catkin build 
+```
 
 ## How to run the code
 1) Change the directory 
-'cd catkin_ws'
+
+``` 
+cd catkin_ws
+
+```
 2)Source the workspace
-'sourcedevel/setup.bash'
-3) In a terminal, run 'roscore'.
-4) In a new terminal, run the talker by using
-'rosrun beginner_tutorials talker'
+
+```
+sourcedevel/setup.bash
+```
+3) In a terminal, run 
+```
+roscore
+```.
+5) In a new terminal, run the talker by using
+
+```
+rosrun beginner_tutorials talker
+
+```
 5) In a new terminal, run the listener by using
-'rosrun beginner_tutorials listener'
+```
+rosrun beginner_tutorials listener
+```
 
 
 
