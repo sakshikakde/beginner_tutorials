@@ -16,8 +16,8 @@ Talker::Talker() {
     initPublishers();
 }
 
-Talker::~Talker()
-{}
+Talker::~Talker() {
+}
 
 void Talker::initParams() {
     this->nh_p->param<std::string>("publisher_topic_name",

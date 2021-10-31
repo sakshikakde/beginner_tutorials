@@ -16,8 +16,8 @@ Listener::Listener() {
     initSubscribers();
 }
 
-Listener::~Listener()
-{}
+Listener::~Listener() {
+}
 
 void Listener::initParams() {
     this->nh_p->param<std::string>("subscriber_topic_name",
