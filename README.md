@@ -48,7 +48,7 @@ sourcedevel/setup.bash
 3) In a terminal, run 
 ```
 roscore
-```.
+```
 5) In a new terminal, run the talker by using
 
 ```
@@ -59,6 +59,7 @@ rosrun beginner_tutorials talker
 ```
 rosrun beginner_tutorials listener
 ```
+
 
 
 
