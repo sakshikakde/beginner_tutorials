@@ -34,6 +34,7 @@ class Talker {
      */
     void runNode();
     ros::NodeHandle* nh_p;  // nodehandle
+
  private:
     std::string publisher_topic_name;  // ROS publisher topic name
     ros::Publisher chatter_pub;  // ROS publisher object
