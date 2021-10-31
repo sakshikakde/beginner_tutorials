@@ -19,10 +19,16 @@
 class Talker {
  public:
     /**
-     * @brief Construct a new Talker object
+     * @brief default constructor for Talker object
      * 
      */
     Talker();
+    /**
+     * @brief explicit constructor for Talker object
+     * 
+     * @param nh_p pointer to nodehandle
+     */
+    explicit Talker(ros::NodeHandle* nh_p);
     /**
      * @brief Destroy the Talker object
      * 
