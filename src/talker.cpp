@@ -11,12 +11,16 @@
 #include <beginner_tutorials/talker.hpp>
 
 Talker::Talker() {
-    this->nh_p = new ros::NodeHandle("~");
+}
+
+Talker::Talker(ros::NodeHandle* nh_p) {
+    this->nh_p = nh_p;
     initParams();
     initPublishers();
 }
 
 Talker::~Talker() {
+      delete this->nh_p;
 }
 
 void Talker::initParams() {

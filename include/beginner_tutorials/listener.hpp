@@ -19,10 +19,16 @@
 class Listener {
  public:
     /**
-     * @brief Construct a new Listener object
+     * @brief default constructor for Listener object
      * 
      */
     Listener();
+    /**
+     * @brief explicit constructor for Listener object
+     * 
+     * @param nh_p pointer to nodehandle
+     */
+    explicit Listener(ros::NodeHandle* nh_p);
     /**
      * @brief Destroy the Listener object
      * 

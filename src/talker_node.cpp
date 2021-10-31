@@ -12,7 +12,9 @@
 
 int main(int argc, char **argv) {
   ros::init(argc, argv, "talker_node");
-  Talker talker;
+  ros::NodeHandle* nh_p = new ros::NodeHandle("~");
+  Talker talker(nh_p);
   talker.runNode();
+  delete nh_p;
   return 0;
 }

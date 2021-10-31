@@ -9,14 +9,17 @@
  * 
  */
 #include <beginner_tutorials/listener.hpp>
-
 Listener::Listener() {
-    this->nh_p = new ros::NodeHandle("~");
+}
+
+Listener::Listener(ros::NodeHandle* nh_p) {
+    this->nh_p = nh_p;
     initParams();
     initSubscribers();
 }
 
 Listener::~Listener() {
+    delete this->nh_p;
 }
 
 void Listener::initParams() {
