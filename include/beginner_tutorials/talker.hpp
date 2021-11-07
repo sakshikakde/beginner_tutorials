@@ -44,6 +44,7 @@ class Talker {
  private:
     std::string publisher_topic_name;  // ROS publisher topic name
     ros::Publisher chatter_pub;  // ROS publisher object
+    ros::ServiceServer service;
     int publisher_rate;  // rate of publishing
     /**
      * @brief Function to init params
@@ -55,5 +56,7 @@ class Talker {
      * 
      */
     void initPublishers();
+    void initServices();
+    
 };
 #endif  // INCLUDE_BEGINNER_TUTORIALS_TALKER_HPP_

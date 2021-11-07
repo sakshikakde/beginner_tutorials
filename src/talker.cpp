@@ -36,6 +36,9 @@ void Talker::initPublishers() {
          this->publisher_rate, this);
 }
 
+void Talker::initServices() {
+}
+
 void Talker::runNode() {
   int count = 0;
   ros::Rate loop_rate(10);
