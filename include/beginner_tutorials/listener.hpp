@@ -15,6 +15,7 @@
 #include <std_msgs/String.h>
 #include <sstream>
 #include <string>
+#include "beginner_tutorials/AddTwoInts.h"
 
 class Listener {
  public:
@@ -42,8 +43,9 @@ class Listener {
     ros::NodeHandle* nh_p;  // nodehandle
 
  private:
-    std::string subscriber_topic_name;  // ROS subscriber topic name
+    std::string subscriber_topic_name, service_name;  // ROS subscriber topic name
     ros::Subscriber chatter_sub;  // ROS Subscriber object
+    ros::ServiceClient client;
     /**
      * @brief Function to init params
      * 
@@ -54,6 +56,7 @@ class Listener {
      * 
      */
     void initSubscribers();
+    void initServiceClient();
     /**
      * @brief Callback function for subscriber
      * 

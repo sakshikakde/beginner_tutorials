@@ -16,6 +16,7 @@ Listener::Listener(ros::NodeHandle* nh_p) {
     this->nh_p = nh_p;
     initParams();
     initSubscribers();
+    initServiceClient();
 }
 
 Listener::~Listener() {
@@ -25,6 +26,8 @@ Listener::~Listener() {
 void Listener::initParams() {
     this->nh_p->param<std::string>("subscriber_topic_name",
      this->subscriber_topic_name, "/chatter");
+    this->nh_p->param<std::string>("service_name",
+     this->service_name, "/talker_node/add_two_ints");
 }
 
 void Listener::initSubscribers() {
@@ -32,8 +35,20 @@ void Listener::initSubscribers() {
      1, &Listener::chatter_callback, this);
 }
 
+void Listener::initServiceClient() {
+    this->client = this->nh_p->serviceClient<beginner_tutorials::AddTwoInts>(this->service_name, this);
+}
 void Listener::chatter_callback(const std_msgs::String::ConstPtr& msg) {
     ROS_INFO("Yes, I heard [%s]", msg->data.c_str());
+    ROS_INFO("Can you add two numbers for me?");
+    beginner_tutorials::AddTwoInts srv;
+    srv.request.a = 10;
+    srv.request.b = 10;
+    if (client.call(srv)) {
+        ROS_INFO("Yes! The sum is : %ld", srv.response.sum);
+    } else {
+        ROS_ERROR("Failed to call service add_two_ints");
+    }
 }
 
 void Listener::runNode() {
