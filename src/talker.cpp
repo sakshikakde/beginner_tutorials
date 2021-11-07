@@ -17,6 +17,7 @@ Talker::Talker(ros::NodeHandle* nh_p) {
     this->nh_p = nh_p;
     initParams();
     initPublishers();
+    initServices();
 }
 
 Talker::~Talker() {
@@ -28,6 +29,8 @@ void Talker::initParams() {
      this->publisher_topic_name, "/chatter");
     this->nh_p->param<int>("publisher_rate",
      this->publisher_rate, 10);
+    this->nh_p->param<std::string>("service_name",
+     this->service_name, "add_two_ints");
 }
 
 void Talker::initPublishers() {
@@ -37,6 +40,16 @@ void Talker::initPublishers() {
 }
 
 void Talker::initServices() {
+  this->service = this->nh_p->advertiseService(this->service_name, &Talker::add, this);
+  ROS_INFO("Ready to add two ints.");
+}
+
+bool Talker::add(beginner_tutorials::AddTwoInts::Request  &req,
+        beginner_tutorials::AddTwoInts::Response &res) {
+  res.sum = req.a + req.b;
+  ROS_INFO("request: x=%ld, y=%ld", req.a, req.b);
+  ROS_INFO("sending back response: [%ld]", res.sum);
+  return true;
 }
 
 void Talker::runNode() {

@@ -15,6 +15,7 @@
 #include <std_msgs/String.h>
 #include <sstream>
 #include <string>
+#include "beginner_tutorials/AddTwoInts.h"
 
 class Talker {
  public:
@@ -42,7 +43,7 @@ class Talker {
     ros::NodeHandle* nh_p;  // nodehandle
 
  private:
-    std::string publisher_topic_name;  // ROS publisher topic name
+    std::string publisher_topic_name, service_name;  // ROS publisher topic name
     ros::Publisher chatter_pub;  // ROS publisher object
     ros::ServiceServer service;
     int publisher_rate;  // rate of publishing
@@ -57,6 +58,7 @@ class Talker {
      */
     void initPublishers();
     void initServices();
-    
+    bool add(beginner_tutorials::AddTwoInts::Request  &req,
+            beginner_tutorials::AddTwoInts::Response &res);
 };
 #endif  // INCLUDE_BEGINNER_TUTORIALS_TALKER_HPP_
