@@ -41,14 +41,20 @@ void Talker::initPublishers() {
 
 void Talker::initServices() {
   this->service = this->nh_p->advertiseService(this->service_name, &Talker::add, this);
-  ROS_INFO("Ready to add two ints.");
+  ROS_INFO_STREAM("Ready to add two ints.");
 }
 
 bool Talker::add(beginner_tutorials::AddTwoInts::Request  &req,
         beginner_tutorials::AddTwoInts::Response &res) {
+  if ((req.a < 0) || (req.b < 0)) {
+    ROS_WARN_STREAM("One of the numbers is negative");
+  }
   res.sum = req.a + req.b;
-  ROS_INFO("request: x=%ld, y=%ld", req.a, req.b);
-  ROS_INFO("sending back response: [%ld]", res.sum);
+  if (res.sum == 0) {
+    ROS_ERROR_STREAM("Sum is 0!");
+  }
+  ROS_INFO_STREAM("request: x = " << req.a << " y = " <<  req.b);
+  ROS_INFO_STREAM("sending back response: " << res.sum);
   return true;
 }
 
@@ -56,6 +62,7 @@ void Talker::runNode() {
   int count = 0;
   ros::Rate loop_rate(10);
   while (ros::ok()) {
+    ROS_DEBUG_STREAM("Talker node is active");
     std_msgs::String msg;
     std::stringstream ss;
     ss << "Can you hear " << count << " ?";

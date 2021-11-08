@@ -39,18 +39,19 @@ void Listener::initServiceClient() {
     this->client = this->nh_p->serviceClient<beginner_tutorials::AddTwoInts>(this->service_name, this);
 }
 void Listener::chatter_callback(const std_msgs::String::ConstPtr& msg) {
-    ROS_INFO("Yes, I heard [%s]", msg->data.c_str());
-    ROS_INFO("Can you add two numbers for me?");
+    ROS_INFO_STREAM("Yes, I heard " << msg->data.c_str());
+    ROS_INFO_STREAM("Can you add two numbers for me?");
     beginner_tutorials::AddTwoInts srv;
     srv.request.a = 10;
-    srv.request.b = 10;
+    srv.request.b = -10;
     if (client.call(srv)) {
-        ROS_INFO("Yes! The sum is : %ld", srv.response.sum);
+        ROS_INFO_STREAM("Yes! The sum is : " << srv.response.sum);
     } else {
-        ROS_ERROR("Failed to call service add_two_ints");
+        ROS_ERROR_STREAM("Failed to call service add_two_ints");
     }
 }
 
 void Listener::runNode() {
+  ROS_DEBUG_ONCE("Talker node activated.");
   ros::spin();
 }
