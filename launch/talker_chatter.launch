@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="platform_name" default="sakshi" />
+	<group>
+  		<node pkg="beginner_tutorials" type="talker" name="talker_$(arg platform_name)">
+            <param name="publisher_topic_name" value="/chatter"/>
+            <param name="publisher_rate" value="20"/>
+            <param name="service_name" value="add_two_ints"/>
+        </node>
+	</group>
+
+    <group>
+  		<node pkg="beginner_tutorials" type="listener" name="listener_$(arg platform_name)">
+            <param name="subscriber_topic_name" value="/chatter"/>
+            <param name="service_name" value="/talker_$(arg platform_name)/add_two_ints"/>
+        </node>
+	</group>
+
+
+</launch>
