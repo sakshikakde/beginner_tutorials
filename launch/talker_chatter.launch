@@ -5,8 +5,8 @@
     <arg name="publisher_rate" default="20" />
     <arg name="service_name" default="/add_two_ints" />
     <arg name="subscriber_topic_name" default="/chatter" />
-	<group>
-  		<node pkg="beginner_tutorials" type="talker" name="talker_$(arg platform_name)">
+    <group>
+  	<node pkg="beginner_tutorials" type="talker" name="talker_$(arg platform_name)">
             <param name="publisher_topic_name" value="$(arg publisher_topic_name)"/>
             <param name="publisher_rate" value="$(arg publisher_rate)"/>
             <param name="service_name" value="$(arg service_name)"/>
@@ -14,11 +14,11 @@
 	</group>
 
     <group>
-  		<node pkg="beginner_tutorials" type="listener" name="listener_$(arg platform_name)">
+  	<node pkg="beginner_tutorials" type="listener" name="listener_$(arg platform_name)">
             <param name="subscriber_topic_name" value="$(arg subscriber_topic_name)"/>
             <param name="service_name" value="$(arg service_name)"/>
         </node>
-	</group>
+    </group>
 
 
 </launch>
