@@ -70,7 +70,7 @@ class Talker {
      * @return true if the service operations are successful
      * @return false if the service operations fail
      */
-    bool add(beginner_tutorials::AddTwoInts::Request  &req,
-            beginner_tutorials::AddTwoInts::Response &res);
+    bool add(beginner_tutorials::AddTwoInts::Request  &req,  // NOLINT
+            beginner_tutorials::AddTwoInts::Response &res);  // NOLINT
 };
 #endif  // INCLUDE_BEGINNER_TUTORIALS_TALKER_HPP_

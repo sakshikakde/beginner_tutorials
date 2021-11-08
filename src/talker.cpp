@@ -40,7 +40,9 @@ void Talker::initPublishers() {
 }
 
 void Talker::initServices() {
-  this->service = this->nh_p->advertiseService(this->service_name, &Talker::add, this);
+  this->service = this->nh_p->advertiseService(this->service_name,
+   &Talker::add,
+   this);
   ROS_INFO_STREAM("Ready to add two ints.");
 }
 

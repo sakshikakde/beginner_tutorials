@@ -36,7 +36,9 @@ void Listener::initSubscribers() {
 }
 
 void Listener::initServiceClient() {
-    this->client = this->nh_p->serviceClient<beginner_tutorials::AddTwoInts>(this->service_name, this);
+    this->client = this->nh_p->serviceClient<beginner_tutorials::AddTwoInts>(
+        this->service_name,
+        this);
 }
 void Listener::chatter_callback(const std_msgs::String::ConstPtr& msg) {
     ROS_INFO_STREAM("Yes, I heard " << msg->data.c_str());

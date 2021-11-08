@@ -43,7 +43,8 @@ class Listener {
     ros::NodeHandle* nh_p;  // nodehandle
 
  private:
-    std::string subscriber_topic_name, service_name;  // ROS subscriber topic name
+    std::string subscriber_topic_name,
+     service_name;  // ROS subscriber topic name
     ros::Subscriber chatter_sub;  // ROS Subscriber object
     ros::ServiceClient client;  // ROS service client object
     /**
