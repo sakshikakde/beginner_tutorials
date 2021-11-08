@@ -74,7 +74,7 @@ sourcedevel/setup.bash
 ```
 3) In a terminal, run 
 ```
-roslaunch beginner_tutorials talker_chatter.launch
+roslaunch beginner_tutorials talker_chatter.launch platform_name:="my_laptop"
 ```
 
 ### Parameters
