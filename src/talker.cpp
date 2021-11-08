@@ -60,7 +60,7 @@ bool Talker::add(beginner_tutorials::AddTwoInts::Request  &req,
 
 void Talker::runNode() {
   int count = 0;
-  ros::Rate loop_rate(10);
+  ros::Rate loop_rate(this->publisher_rate);
   while (ros::ok()) {
     ROS_DEBUG_STREAM("Talker node is active");
     std_msgs::String msg;
