@@ -35,7 +35,7 @@ cd catkin_ws
 catkin build 
 ```
 
-## How to run the code
+## How to run the code(without roslaunch)
 1) Change the directory 
 
 ``` 
@@ -61,9 +61,26 @@ rosrun beginner_tutorials talker
 ```
 rosrun beginner_tutorials listener
 ```
+## How to run the code(with launch)
 
+``` 
+cd catkin_ws
 
+```
+2)Source the workspace
 
+```
+sourcedevel/setup.bash
+```
+3) In a terminal, run 
+```
+roslaunch beginner_tutorials talker_chatter.launch
+```
 
+### Parameters
 
-
+- platform_name : default="sakshi"
+- publisher_topic_name :  default="/chatter"
+- publisher_rate : default = 20
+- service_name :  default="add_two_ints"
+- subscriber_topic_name : default="/chatter"
