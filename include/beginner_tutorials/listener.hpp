@@ -45,7 +45,7 @@ class Listener {
  private:
     std::string subscriber_topic_name, service_name;  // ROS subscriber topic name
     ros::Subscriber chatter_sub;  // ROS Subscriber object
-    ros::ServiceClient client;
+    ros::ServiceClient client;  // ROS service client object
     /**
      * @brief Function to init params
      * 
@@ -56,6 +56,10 @@ class Listener {
      * 
      */
     void initSubscribers();
+    /**
+     * @brief Function to init service clients
+     * 
+     */
     void initServiceClient();
     /**
      * @brief Callback function for subscriber
