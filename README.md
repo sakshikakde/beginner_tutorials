@@ -84,3 +84,12 @@ roslaunch beginner_tutorials talker_chatter.launch platform_name:="my_laptop"
 - publisher_rate : default = 20
 - service_name :  default="add_two_ints"
 - subscriber_topic_name : default="/chatter"
+
+
+## ROS Service from command line
+Use the following command to call the ros service from terminal:
+
+```
+rosservice call /add_two_ints "a: 10
+b: 30" 
+```
