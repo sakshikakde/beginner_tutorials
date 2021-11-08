@@ -17,6 +17,7 @@ Talker::Talker(ros::NodeHandle* nh_p) {
     this->nh_p = nh_p;
     initParams();
     initPublishers();
+    initServices();
 }
 
 Talker::~Talker() {
@@ -28,6 +29,8 @@ void Talker::initParams() {
      this->publisher_topic_name, "/chatter");
     this->nh_p->param<int>("publisher_rate",
      this->publisher_rate, 10);
+    this->nh_p->param<std::string>("service_name",
+     this->service_name, "add_two_ints");
 }
 
 void Talker::initPublishers() {
@@ -36,10 +39,32 @@ void Talker::initPublishers() {
          this->publisher_rate, this);
 }
 
+void Talker::initServices() {
+  this->service = this->nh_p->advertiseService(this->service_name,
+   &Talker::add,
+   this);
+  ROS_INFO_STREAM("Ready to add two ints.");
+}
+
+bool Talker::add(beginner_tutorials::AddTwoInts::Request  &req,
+        beginner_tutorials::AddTwoInts::Response &res) {
+  if ((req.a < 0) || (req.b < 0)) {
+    ROS_WARN_STREAM("One of the numbers is negative");
+  }
+  res.sum = req.a + req.b;
+  if (res.sum == 0) {
+    ROS_ERROR_STREAM("Sum is 0!");
+  }
+  ROS_INFO_STREAM("request: x = " << req.a << " y = " <<  req.b);
+  ROS_INFO_STREAM("sending back response: " << res.sum);
+  return true;
+}
+
 void Talker::runNode() {
   int count = 0;
-  ros::Rate loop_rate(10);
+  ros::Rate loop_rate(this->publisher_rate);
   while (ros::ok()) {
+    ROS_DEBUG_STREAM("Talker node is active");
     std_msgs::String msg;
     std::stringstream ss;
     ss << "Can you hear " << count << " ?";
@@ -47,7 +72,10 @@ void Talker::runNode() {
 
     ROS_INFO("%s", msg.data.c_str());
     this->chatter_pub.publish(msg);
-
+    uint32_t n_sub = this->chatter_pub.getNumSubscribers();
+    if (n_sub == 0) {
+      ROS_FATAL_STREAM("NO SUBSCRIBERS!");
+    }
     ros::spinOnce();
     loop_rate.sleep();
     ++count;
