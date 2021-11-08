@@ -70,7 +70,10 @@ void Talker::runNode() {
 
     ROS_INFO("%s", msg.data.c_str());
     this->chatter_pub.publish(msg);
-
+    uint32_t n_sub = this->chatter_pub.getNumSubscribers();
+    if (n_sub == 0) {
+      ROS_FATAL_STREAM("NO SUBSCRIBERS!");
+    }
     ros::spinOnce();
     loop_rate.sleep();
     ++count;
