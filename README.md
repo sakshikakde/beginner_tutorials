@@ -94,4 +94,39 @@ rosservice call /add_two_ints "a: 10
 b: 30" 
 ```
 
+## Run rostest
 
+1) Change the directory to the workspace
+``` 
+cd catkin_ws
+
+```
+3) Build the workspace using the following command:     
+```
+catkin build --catkin-make-args test      
+```     
+3)Source the workspace
+
+```
+source devel/setup.bash
+```
+4) In a terminal, run 
+```
+rostest beginner_tutorials test_broadcaster.launch
+```
+## Recording the bag file
+1) Change the directory to the workspace
+``` 
+cd catkin_ws
+```    
+2) Source the workspace
+
+```
+source devel/setup.bash
+```
+3) In a terminal, run 
+```
+roslaunch beginner_tutorials talker_chatter.launch record_bag:=true bags_directory:=/home/sakshi/courses/ENPM808X/week11/catkin_ws/src/beginner_tutorials/results/bag
+
+```
+Note that you need to update the bags_directory param to a suitable location
