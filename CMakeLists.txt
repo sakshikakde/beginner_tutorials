@@ -8,6 +8,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   message_generation
   roslaunch
+  tf
 )
 
 add_service_files(
