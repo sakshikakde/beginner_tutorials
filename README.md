@@ -131,3 +131,27 @@ roslaunch beginner_tutorials talker_chatter.launch record_bag:=true bags_directo
 ```
 Note that you need to update the bags_directory param to a suitable location
 
+## Running the bag file
+1) Change the directory to the location where rosbag is recorded
+ 
+2) Run the command
+
+```
+rosbag play <bagfile_name> --pause
+```
+3) In a new terminal, change the directory to the workspace
+``` 
+cd catkin_ws
+```    
+4) Source the workspace
+
+```
+source devel/setup.bash
+```
+5) Run 
+```
+rosrun beginner_tutorials listener
+
+```
+
+6) Unpause the bag file. the listener node should be able to get the topic messages from the bag file.
