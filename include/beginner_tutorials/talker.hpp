@@ -75,6 +75,10 @@ class Talker {
      */
     bool add(beginner_tutorials::AddTwoInts::Request  &req,  // NOLINT
             beginner_tutorials::AddTwoInts::Response &res);  // NOLINT
+    /**
+     * @brief Function to broadcast static tf transforms
+     * 
+     */
     void broadcastTransform();
 };
 #endif  // INCLUDE_BEGINNER_TUTORIALS_TALKER_HPP_
