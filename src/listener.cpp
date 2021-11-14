@@ -27,7 +27,7 @@ void Listener::initParams() {
     this->nh_p->param<std::string>("subscriber_topic_name",
      this->subscriber_topic_name, "/chatter");
     this->nh_p->param<std::string>("service_name",
-     this->service_name, "/talker_node/add_two_ints");
+     this->service_name, "/add_two_ints");
 }
 
 void Listener::initSubscribers() {
