@@ -16,29 +16,29 @@ std::shared_ptr<ros::NodeHandle> nh;
 
 TEST(TESTSuite, tf_broadcaster) {
   std::string platform_name, parent_frame_name, child_frame_name;
-  nh->param<std::string>("broadcaster_name", platform_name, "talker_test");
-  double x_expected = 10.0;
-  double y_expected = 10.0;
-  double z_expected = 10.0;
+  nh->param<std::string>("broadcaster_name", platform_name, "talker_test");  // namespace for
+  double x_expected = 10.0;  // Default value
+  double y_expected = 10.0;  // Default value
+  double z_expected = 10.0;  // Default value
 
-  double roll_expected = 0;
-  double pitch_expected = 0;
-  double yaw_expected = 0;
+  double roll_expected = 0;  // Default value
+  double pitch_expected = 0;  // Default value
+  double yaw_expected = 0;  // Default value
   ros::param::get(platform_name + "/parent_frame_name", parent_frame_name);
   ros::param::get(platform_name + "/child_frame_name", child_frame_name);
 
-  ros::param::get(platform_name + "/x", x_expected);
-  ros::param::get(platform_name + "/y", y_expected);
-  ros::param::get(platform_name + "/z", z_expected);
+  ros::param::get(platform_name + "/x", x_expected);  // Updated value
+  ros::param::get(platform_name + "/y", y_expected);  // Updated value
+  ros::param::get(platform_name + "/z", z_expected);  // Updated value
 
-  ros::param::get(platform_name + "/roll", roll_expected);
-  ros::param::get(platform_name + "/pitch", pitch_expected);
-  ros::param::get(platform_name + "/yaw", yaw_expected);
+  ros::param::get(platform_name + "/roll", roll_expected);  // Updated value
+  ros::param::get(platform_name + "/pitch", pitch_expected);  // Updated value
+  ros::param::get(platform_name + "/yaw", yaw_expected);  // Updated value
 
   tf::TransformListener listener;
   tf::StampedTransform transform;
   bool tf_exists;
-  ros::Duration(1).sleep();
+  ros::Duration(1).sleep();  // Wait for broadcaster to be up
   try {
       listener.lookupTransform(parent_frame_name, child_frame_name,
                                 ros::Time(0), transform);
