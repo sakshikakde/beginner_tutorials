@@ -13,10 +13,11 @@
     <arg name="roll" default="0" />
     <arg name="pitch" default="0" />
     <arg name="yaw" default="0" />
-
+    <arg name="bags_directory" value="/home/sakshi/courses/ENPM808X/week9/catkin_ws/src/beginner_tutorials/results"/>
+    <arg name="record_bag" default="false" />
 
     <group>
-  	<node pkg="beginner_tutorials" type="talker" name="talker_$(arg platform_name)">
+    	<node pkg="beginner_tutorials" type="talker" name="talker_$(arg platform_name)">
             <param name="publisher_topic_name" value="$(arg publisher_topic_name)"/>
             <param name="publisher_rate" value="$(arg publisher_rate)"/>
             <param name="service_name" value="$(arg service_name)"/>
@@ -32,11 +33,15 @@
 	</group>
 
     <group>
-  	<node pkg="beginner_tutorials" type="listener" name="listener_$(arg platform_name)">
+  	    <node pkg="beginner_tutorials" type="listener" name="listener_$(arg platform_name)">
             <param name="subscriber_topic_name" value="$(arg subscriber_topic_name)"/>
             <param name="service_name" value="$(arg service_name)"/>
         </node>
     </group>
 
-
+    <group if="$(arg record_bag)">
+        <node pkg="rosbag" type="record" name="record"
+            args="record -o $(arg bags_directory)/bag/bag -a"/> 
+    </group>
+ 
 </launch>
