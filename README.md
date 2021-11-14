@@ -42,7 +42,7 @@ catkin build
 cd catkin_ws
 
 ```
-2)Source the workspace
+2) Source the workspace
 
 ```
 sourcedevel/setup.bash
