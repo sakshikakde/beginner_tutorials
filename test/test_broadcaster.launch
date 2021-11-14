@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="platform_name" default="test" />
+    <arg name="publisher_topic_name" default="/chatter" />
+    <arg name="publisher_rate" default="20" />
+    <arg name="service_name" default="/add_two_ints" />
+    <arg name="parent_frame_name" default="/world" />
+    <arg name="child_frame_name" default="/talk" />
+    <arg name="x" default="10" />
+    <arg name="y" default="10" />
+    <arg name="z" default="10" />
+    <arg name="roll" default="0" />
+    <arg name="pitch" default="0" />
+    <arg name="yaw" default="0" />
+
+    <group>
+  	    <node pkg="beginner_tutorials" type="talker" name="talker_$(arg platform_name)">
+            <param name="publisher_topic_name" value="$(arg publisher_topic_name)"/>
+            <param name="publisher_rate" value="$(arg publisher_rate)"/>
+            <param name="service_name" value="$(arg service_name)"/>
+            <param name="parent_frame_name" value="$(arg parent_frame_name)"/>
+            <param name="child_frame_name" value="$(arg child_frame_name)"/>
+            <param name="x" value="$(arg x)"/>
+            <param name="y" value="$(arg y)"/>
+            <param name="z" value="$(arg z)"/>
+            <param name="roll" value="$(arg roll)"/>
+            <param name="pitch" value="$(arg pitch)"/>
+            <param name="yaw" value="$(arg yaw)"/>
+        </node>
+        <test test-name="tests_mynode" pkg="beginner_tutorials" type="tests_mynode">
+            <rosparam param="broadcaster_name">talker_$(arg platform_name)</rosparam>
+        </test>
+
+	</group>
+
+
+</launch>
