@@ -13,7 +13,7 @@
     <arg name="roll" default="0" />
     <arg name="pitch" default="0" />
     <arg name="yaw" default="0" />
-    <arg name="bags_directory" value="/home/sakshi/courses/ENPM808X/week9/catkin_ws/src/beginner_tutorials/results"/>
+    <arg name="bags_directory" default="/home"/>
     <arg name="record_bag" default="false" />
 
     <group>
@@ -41,7 +41,7 @@
 
     <group if="$(arg record_bag)">
         <node pkg="rosbag" type="record" name="record"
-            args="record -o $(arg bags_directory)/bag/bag -a"/> 
+            args="record -o $(arg bags_directory)/bag -a"/> 
     </group>
  
 </launch>
