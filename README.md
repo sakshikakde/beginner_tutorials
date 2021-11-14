@@ -130,3 +130,4 @@ roslaunch beginner_tutorials talker_chatter.launch record_bag:=true bags_directo
 
 ```
 Note that you need to update the bags_directory param to a suitable location
+
