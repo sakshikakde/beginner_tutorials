@@ -36,17 +36,17 @@ void Talker::initParams() {
     this->nh_p->param<std::string>("child_frame_name",
      this->child_frame_name, "/talk");
     this->nh_p->param<double>("x",
-     this->x, 10.0);
+     this->x, 0.0);
     this->nh_p->param<double>("y",
-     this->y, 20.0);
+     this->y, 0.0);
     this->nh_p->param<double>("z",
-     this->z, 30.0);
+     this->z, 0.0);
     this->nh_p->param<double>("roll",
-     this->roll, 50.0);
+     this->roll, 0.0);
     this->nh_p->param<double>("pitch",
-     this->pitch, 50.0);
+     this->pitch, 0.0);
     this->nh_p->param<double>("yaw",
-     this->yaw, 50.0);
+     this->yaw, 0.0);
 }
 
 void Talker::initPublishers() {
