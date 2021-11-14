@@ -46,6 +46,7 @@ class Talker {
  private:
     std::string publisher_topic_name, service_name,
      parent_frame_name, child_frame_name;  // ROS publisher topic name
+    double x, y, z, roll, pitch, yaw;
     ros::Publisher chatter_pub;  // ROS publisher object
     ros::ServiceServer service;  // ROS service object
     int publisher_rate;  // rate of publishing

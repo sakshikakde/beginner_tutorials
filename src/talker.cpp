@@ -35,6 +35,18 @@ void Talker::initParams() {
      this->parent_frame_name, "/world");
     this->nh_p->param<std::string>("child_frame_name",
      this->child_frame_name, "/talk");
+    this->nh_p->param<double>("x",
+     this->x, 10.0);
+    this->nh_p->param<double>("y",
+     this->y, 20.0);
+    this->nh_p->param<double>("z",
+     this->z, 30.0);
+    this->nh_p->param<double>("roll",
+     this->roll, 50.0);
+    this->nh_p->param<double>("pitch",
+     this->pitch, 50.0);
+    this->nh_p->param<double>("yaw",
+     this->yaw, 50.0);
 }
 
 void Talker::initPublishers() {
@@ -68,9 +80,9 @@ void Talker::broadcastTransform() {
   ROS_INFO_STREAM("Broadcasting transform");
   static tf::TransformBroadcaster br;
   tf::Transform transform;
-  transform.setOrigin(tf::Vector3(0.0, 0.0, 0.0));
+  transform.setOrigin(tf::Vector3(this->x, this->y, this->z));
   tf::Quaternion q;
-  q.setRPY(0, 0, 0);
+  q.setRPY(this->roll, this->pitch, this->yaw);
   transform.setRotation(q);
   br.sendTransform(tf::StampedTransform(transform,
   ros::Time::now(),
