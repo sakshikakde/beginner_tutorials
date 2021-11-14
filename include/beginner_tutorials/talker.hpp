@@ -12,6 +12,7 @@
 #define INCLUDE_BEGINNER_TUTORIALS_TALKER_HPP_
 
 #include <ros/ros.h>
+#include <tf/transform_broadcaster.h>
 #include <std_msgs/String.h>
 #include <sstream>
 #include <string>
@@ -43,7 +44,8 @@ class Talker {
     ros::NodeHandle* nh_p;  // nodehandle
 
  private:
-    std::string publisher_topic_name, service_name;  // ROS publisher topic name
+    std::string publisher_topic_name, service_name,
+     parent_frame_name, child_frame_name;  // ROS publisher topic name
     ros::Publisher chatter_pub;  // ROS publisher object
     ros::ServiceServer service;  // ROS service object
     int publisher_rate;  // rate of publishing
@@ -72,5 +74,6 @@ class Talker {
      */
     bool add(beginner_tutorials::AddTwoInts::Request  &req,  // NOLINT
             beginner_tutorials::AddTwoInts::Response &res);  // NOLINT
+    void broadcastTransform();
 };
 #endif  // INCLUDE_BEGINNER_TUTORIALS_TALKER_HPP_

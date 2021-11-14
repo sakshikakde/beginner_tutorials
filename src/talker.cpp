@@ -31,6 +31,10 @@ void Talker::initParams() {
      this->publisher_rate, 10);
     this->nh_p->param<std::string>("service_name",
      this->service_name, "add_two_ints");
+    this->nh_p->param<std::string>("parent_frame_name",
+     this->parent_frame_name, "/world");
+    this->nh_p->param<std::string>("child_frame_name",
+     this->child_frame_name, "/talk");
 }
 
 void Talker::initPublishers() {
@@ -60,11 +64,26 @@ bool Talker::add(beginner_tutorials::AddTwoInts::Request  &req,
   return true;
 }
 
+void Talker::broadcastTransform() {
+  ROS_INFO_STREAM("Broadcasting transform");
+  static tf::TransformBroadcaster br;
+  tf::Transform transform;
+  transform.setOrigin(tf::Vector3(0.0, 0.0, 0.0));
+  tf::Quaternion q;
+  q.setRPY(0, 0, 0);
+  transform.setRotation(q);
+  br.sendTransform(tf::StampedTransform(transform,
+  ros::Time::now(),
+  this->parent_frame_name,
+  this->child_frame_name));
+}
+
 void Talker::runNode() {
   int count = 0;
   ros::Rate loop_rate(this->publisher_rate);
   while (ros::ok()) {
     ROS_DEBUG_STREAM("Talker node is active");
+    this->broadcastTransform();
     std_msgs::String msg;
     std::stringstream ss;
     ss << "Can you hear " << count << " ?";
