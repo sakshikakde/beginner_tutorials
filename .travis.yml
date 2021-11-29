@@ -1,5 +1,4 @@
 # We need a decent ubuntu dist
-sudo: required
 dist: trusty
 
 # Modern cpp settings from
@@ -38,3 +37,4 @@ after_success:
 
 notifications:
   email: false
+
